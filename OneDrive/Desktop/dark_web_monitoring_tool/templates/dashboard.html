@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web Monitoring Tool</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Dark Web Monitoring Tool</h2>
+
+    <!-- Registration Form -->
+    <div class="card mb-4">
+        <div class="card-header">Register</div>
+        <div class="card-body">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-email">Email:</label>
+                    <input type="email" class="form-control" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password:</label>
+                    <input type="password" class="form-control" id="reg-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <div id="reg-response" class="mt-2"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="card mb-4">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email:</label>
+                    <input type="email" class="form-control" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password:</label>
+                    <input type="password" class="form-control" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div id="login-response" class="mt-2"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scan Form -->
+    <div class="card">
+        <div class="card-header">Scan for Breaches</div>
+        <div class="card-body">
+            <form id="scan-form">
+                <div class="form-group">
+                    <label for="scan-email">Email:</label>
+                    <input type="email" class="form-control" id="scan-email" required>
+                </div>
+                <button type="submit" class="btn btn-warning">Scan</button>
+                <div id="scan-response" class="mt-2"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Registration Form Submission
+        $('#register-form').on('submit', function(e) {
+            e.preventDefault();
+            const email = $('#reg-email').val();
+            const password = $('#reg-password').val();
+
+            $.post('/register', { email: email, password: password }, function(data) {
+                $('#reg-response').html('<div class="alert alert-success">' + data.message + '</div>');
+            }).fail(function(data) {
+                $('#reg-response').html('<div class="alert alert-danger">' + data.responseJSON.error + '</div>');
+            });
+        });
+
+        // Login Form Submission
+        $('#login-form').on('submit', function(e) {
+            e.preventDefault();
+            const email = $('#login-email').val();
+            const password = $('#login-password').val();
+
+            $.post('/login', { email: email, password: password }, function(data) {
+                $('#login-response').html('<div class="alert alert-success">' + data.message + '</div>');
+            }).fail(function(data) {
+                $('#login-response').html('<div class="alert alert-danger">' + data.responseJSON.error + '</div>');
+            });
+        });
+
+        // Scan Form Submission
+        $('#scan-form').on('submit', function(e) {
+            e.preventDefault();
+            const email = $('#scan-email').val();
+
+            $.post('/scan', { email: email }, function(data) {
+                $('#scan-response').html('<div class="alert alert-info">' + data.message + '</div>');
+            }).fail(function(data) {
+                $('#scan-response').html('<div class="alert alert-danger">' + data.responseJSON.error + '</div>');
+            });
+        });
+    });
+</script>
+</body>
+</html>
