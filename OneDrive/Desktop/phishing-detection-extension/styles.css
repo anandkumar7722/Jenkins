@@ -1,0 +1,69 @@
+/* styles.css */
+
+/* Reset some default styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Use a clean, sans-serif font */
+}
+
+#container {
+    width: 300px; /* Set a fixed width for the popup */
+    padding: 15px; /* Add some padding for better spacing */
+    background-color: #f8f9fa; /* Light background color */
+    border: 1px solid #dee2e6; /* Border for the popup */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+h1 {
+    font-size: 18px; /* Larger font for the main title */
+    color: #343a40; /* Dark color for the title */
+    margin-bottom: 10px; /* Space below the title */
+    text-align: center; /* Center align the title */
+}
+
+h2 {
+    font-size: 16px; /* Slightly smaller font for subtitles */
+    color: #495057; /* Medium color for subtitles */
+    margin-bottom: 10px; /* Space below the subtitle */
+}
+
+#reports {
+    margin-bottom: 10px; /* Space below the reports section */
+}
+
+ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove padding */
+}
+
+li {
+    background-color: #ffffff; /* White background for each report */
+    border: 1px solid #ced4da; /* Border for report items */
+    border-radius: 4px; /* Rounded corners for report items */
+    padding: 10px; /* Padding for report items */
+    margin-bottom: 5px; /* Space between reports */
+    color: #212529; /* Dark text color */
+}
+
+#noReports {
+    color: #dc3545; /* Red color for the no reports message */
+    text-align: center; /* Center align the message */
+}
+
+#refreshButton {
+    display: block; /* Make the button block-level */
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for the button */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Increase font size for button text */
+}
+
+#refreshButton:hover {
+    background-color: #0056b3; /* Darken button color on hover */
+}
