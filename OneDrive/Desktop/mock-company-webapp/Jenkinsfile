@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Running the Gradle build step
+                sh './gradlew assemble'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Running the Gradle test step
+                sh './gradlew test'
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Archive test reports if available
+            junit '**/build/test-results/test/*.xml'
+        }
+        success {
+            echo 'Build and tests passed successfully!'
+        }
+        failure {
+            echo 'Build or tests failed.'
+        }
+    }
+}
